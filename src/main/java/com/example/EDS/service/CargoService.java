@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CargoService {
@@ -21,6 +22,14 @@ public class CargoService {
 
     public List<Cargo> obterCargos() {
         return  cargoRepository.findAll();
+    }
+
+    public Cargo obterCargosByID(Integer ID) {
+        Optional<Cargo> cargo = cargoRepository.findById(ID);
+        if (cargo.isEmpty()) {
+            throw new RuntimeException("Não encontrado");
+        }
+        return cargo.get();
     }
 
 

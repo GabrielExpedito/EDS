@@ -22,13 +22,11 @@ public class CargoController {
         try {
             cargoService.inserirCargo(cargo);
             return ResponseEntity.status(HttpStatus.CREATED).body("Cargo inserido com sucesso");
-        }catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.internalServerError().body("Erro ao inserir o Cargo");
 
-       }
-
-
+        }
     }
 
     @GetMapping
@@ -36,7 +34,13 @@ public class CargoController {
         return ResponseEntity.status(HttpStatus.FOUND).body(cargoService.obterCargos());
     }
 
-
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> obterCargosById(@PathVariable(value = "id") Integer ID) {
+        try {
+            Cargo cargo = cargoService.obterCargosByID(ID);
+            return ResponseEntity.status(HttpStatus.FOUND).body(cargo);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado");
+        }
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.EDS.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,10 +22,12 @@ public class Cargo {
     @Column(name = "cdcargo", unique = true, nullable = false)
     private Integer cdCargo;
 
+    @JsonProperty("nmCargo")
     @Column(name = "nmcargo", nullable = false, length = 100)
     private String nmCargo;
 
-    @Column(name = "dtcriacao", nullable = false)
+    @JsonProperty("dtCriacao")
+    @Column(name = "dt_Criacao", nullable = false)
     @Temporal(TemporalType.TIMESTAMP) // Garante o tipo correto
     private Date dtCriacao;
 
