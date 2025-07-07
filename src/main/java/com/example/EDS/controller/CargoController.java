@@ -42,5 +42,6 @@ public class CargoController {
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado");
         }
+
     }
 }
