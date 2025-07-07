@@ -8,7 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/Cargo")
@@ -55,5 +57,29 @@ public class CargoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao deletar o cargo");
         }
 
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Object> updateCargo(@PathVariable Integer id, @RequestBody Cargo cargoDetails) {
+        if (cargoDetails.getCdCargo() != null && !cargoDetails.getCdCargo().equals(id)) {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "O ID no corpo da requisição não coincide com o ID da URL.");
+            return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+        }
+        Cargo updateCargo = cargoService.updateCargo(id, cargoDetails);
+
+        if (updateCargo != null) {
+
+            Map<String, Object> successResponse = new HashMap<>();
+            successResponse.put("message", "Cargo atualizado com sucesso!");
+            successResponse.put("cargo", updateCargo);
+            successResponse.put("status", HttpStatus.OK.value());
+
+            return new ResponseEntity<>(successResponse, HttpStatus.OK);
+        } else {
+            Map<String, String> errorResponse = new HashMap<>();
+            errorResponse.put("message", "Cargo com ID " + id + " não encontrado para atualização.");
+            return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+        }
     }
 }

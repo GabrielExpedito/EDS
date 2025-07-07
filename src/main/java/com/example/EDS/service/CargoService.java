@@ -36,5 +36,20 @@ public class CargoService {
         cargoRepository.deleteById(ID);
     }
 
+    public Cargo updateCargo(Integer id, Cargo cargoDetalhes) {
+        Optional<Cargo> existingCargoOptinonal = cargoRepository.findById(id);
+        if (existingCargoOptinonal.isPresent()) {
+            Cargo existingCargo = existingCargoOptinonal.get();
+
+            existingCargo.setNmCargo(cargoDetalhes.getNmCargo());
+            existingCargo.setDtCriacao(cargoDetalhes.getDtCriacao());
+            existingCargo.setSalario(cargoDetalhes.getSalario());
+
+            return cargoRepository.save(existingCargo);
+        } else {
+            return null;
+        }
+    }
+
 
 }
