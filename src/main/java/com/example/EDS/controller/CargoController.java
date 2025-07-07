@@ -44,4 +44,16 @@ public class CargoController {
         }
 
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletarCargo(@PathVariable(value = "id") Integer ID) {
+        try {
+            cargoService.deletarCargo(ID);
+            return ResponseEntity.status(HttpStatus.OK).body("Cargo deletado com sucesso");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao deletar o cargo");
+        }
+
+    }
 }

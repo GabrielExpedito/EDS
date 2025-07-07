@@ -32,5 +32,9 @@ public class CargoService {
         return cargo.get();
     }
 
+    public void deletarCargo(Integer ID) {
+        cargoRepository.deleteById(ID);
+    }
+
 
 }
