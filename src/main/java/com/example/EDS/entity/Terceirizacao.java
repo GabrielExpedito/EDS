@@ -1,5 +1,6 @@
 package com.example.EDS.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,10 +14,17 @@ public class Terceirizacao {
 
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column (name = "CdTerceirizacao", unique = true)
-    private Integer CdTerceirizacao;
-    private String NmEmpresa;
-    private Double NmContrato;
+    @JsonProperty("cdTerceirizacao")
+    @Column (name = "cdterceirizacao", unique = true)
+    private Integer cdTerceirizacao;
+
+    @JsonProperty("nmEmpresa")
+    @Column(name = "nmempresa", nullable = false, length = 100)
+    private String nmEmpresa;
+
+    @JsonProperty("nmContrato")
+    @Column(name = "nmcontrato", nullable = false, length = 100)
+    private Double nmContrato;
 
 
 }
