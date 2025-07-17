@@ -6,10 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/Terceirizacao")
@@ -19,7 +18,6 @@ public class TerceirizacaoController {
     @Autowired
     TerceirizacaoService terceirizacaoService;
 
-    /*PRECISO TESTAR ESSE MÉTODO AINDA*/
     @PostMapping
     public ResponseEntity<String> inserirTerceirizacao(@RequestBody Terceirizacao terceirizacao) {
         try {
@@ -28,6 +26,22 @@ public class TerceirizacaoController {
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Erro ao cria a Terceirização");
         }
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Terceirizacao>> obterTerceirizacao() {
+        return ResponseEntity.status(HttpStatus.FOUND).body(terceirizacaoService.obterTerceirizacao());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> obterTerceirizacaoById(@PathVariable(value = "id") Integer id) {
+        try {
+            Terceirizacao terceirizacao = terceirizacaoService.obterTerceirizacaoByID(id);
+            return ResponseEntity.status(HttpStatus.FOUND).body(terceirizacao);
+        } catch (Exception ex) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado a terceirizacao");
+        }
+
     }
 
 
