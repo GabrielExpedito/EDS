@@ -44,5 +44,16 @@ public class TerceirizacaoController {
 
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deletarTerceirizacaoById(@PathVariable (value = "id") Integer id) {
+        try {
+            terceirizacaoService.deletarTerceirizacao(id);
+            return ResponseEntity.status(HttpStatus.OK).body("Terceirização deletada com sucesso");
+        } catch (Exception exception) {
+            exception.printStackTrace();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não foi possível deletar Tercerização");
+        }
+    }
+
 
 }

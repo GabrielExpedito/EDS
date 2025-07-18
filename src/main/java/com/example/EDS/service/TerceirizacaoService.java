@@ -30,5 +30,9 @@ public class TerceirizacaoService {
         return terceirizacao.get();
     }
 
+    public void deletarTerceirizacao(Integer id) {
+        terceirizacaoRepository.deleteById(id);
+    }
+
 
 }
