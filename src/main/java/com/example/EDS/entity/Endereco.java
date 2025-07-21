@@ -1,5 +1,6 @@
 package com.example.EDS.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,9 +16,21 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "id", unique = true)
     private Integer id;
+
+    @JsonProperty("rua")
+    @Column(name = "rua", nullable = false, length = 100)
     private String rua;
-    private String CEP;
-    private String Bairro;
-    private Integer Nr;
+
+    @JsonProperty("cep")
+    @Column(name = "cep", nullable = false, length = 100)
+    private String cep;
+
+    @JsonProperty("bairro")
+    @Column(name = "bairro", nullable = false, length = 100)
+    private String bairro;
+
+    @JsonProperty("nr")
+    @Column(name = "nr", nullable = false, length = 100)
+    private Integer nr;
 
 }
