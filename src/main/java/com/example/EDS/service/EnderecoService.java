@@ -24,7 +24,7 @@ public class EnderecoService {
         return enderecoRepository.findAll();
     }
 
-    public Object getEnderecoById(Integer id) {
+    public Endereco getEnderecoById(Integer id) {
         Optional<Endereco> endereco = enderecoRepository.findById(id);
         if (endereco.isEmpty()) {
             throw new RuntimeException("Endereco não encontrado");
