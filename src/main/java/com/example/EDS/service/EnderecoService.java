@@ -32,5 +32,25 @@ public class EnderecoService {
         return endereco.get();
     }
 
+    public void deleteEndereco(Integer id) {
+        enderecoRepository.deleteById(id);
+    }
+
+    public Endereco updateEndereco (Integer id, Endereco enderecoDetalhes) {
+        Optional<Endereco> existingEnderecoOptional = enderecoRepository.findById(id);
+        if (existingEnderecoOptional.isPresent()) {
+
+            Endereco existingEndereco = existingEnderecoOptional.get();
+            existingEndereco.setRua(enderecoDetalhes.getRua());
+            existingEndereco.setBairro(enderecoDetalhes.getBairro());
+            existingEndereco.setCep(enderecoDetalhes.getCep());
+            existingEndereco.setNr(enderecoDetalhes.getNr());
+
+            return enderecoRepository.save(existingEndereco);
+        } else {
+            return null;
+        }
+    }
+
 
 }
