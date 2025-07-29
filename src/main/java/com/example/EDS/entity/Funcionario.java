@@ -20,8 +20,8 @@ public class Funcionario {
     private Integer nre;
 
     private String nome;
-    private String CPF;
-    private LocalDate Dt_admissao;
+    private String cpf;
+    private LocalDate dtAdmissao;
 
     @ManyToOne
     @JoinColumn(name = "id_cargo", nullable = false)
@@ -32,14 +32,12 @@ public class Funcionario {
 
     private String email;
 
-    @ManyToOne
+    @ManyToOne (cascade = CascadeType.PERSIST)
     @JoinColumn(name = "id_end")
     private Endereco endereco;
 
-    private String flTerceiro;
-
     @ManyToOne
-    @JoinColumn(name = "CdTerceirizacao", nullable = false)
+    @JoinColumn(name = "cdterceirizacao", nullable = false)
     private Terceirizacao terceirizacao;
 
 }
