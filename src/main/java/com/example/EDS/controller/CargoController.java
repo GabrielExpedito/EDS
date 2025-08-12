@@ -33,14 +33,14 @@ public class CargoController {
 
     @GetMapping
     public ResponseEntity<List<Cargo>> obterCargos() {
-        return ResponseEntity.status(HttpStatus.FOUND).body(cargoService.obterCargos());
+        return ResponseEntity.status(HttpStatus.OK).body(cargoService.obterCargos());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> obterCargosById(@PathVariable(value = "id") Integer ID) {
         try {
             Cargo cargo = cargoService.obterCargosByID(ID);
-            return ResponseEntity.status(HttpStatus.FOUND).body(cargo);
+            return ResponseEntity.status(HttpStatus.OK).body(cargo);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado");
         }
