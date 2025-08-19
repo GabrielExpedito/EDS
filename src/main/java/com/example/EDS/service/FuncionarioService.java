@@ -34,6 +34,10 @@ public class FuncionarioService {
         if (funcionario.getCargo() != null && funcionario.getCargo().getCdCargo() != null) {
             Cargo cargo = cargoRepository.findById(funcionario.getCargo().getCdCargo()).orElseThrow(() -> new RuntimeException("Cargo não encontrado"));
             funcionario.setCargo(cargo);
+
+            if(funcionario.getSalario()==null) {
+                funcionario.setSalario(cargo.getSalario());
+            }
         }
 
         if (funcionario.getEndereco() != null && funcionario.getEndereco().getId() != null) {

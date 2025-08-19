@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/Endereco/")
+@RequestMapping("/api/Endereco")
 public class EnderecoController {
 
     @Autowired
@@ -33,14 +33,14 @@ public class EnderecoController {
 
     @GetMapping
     public ResponseEntity<List<Endereco>> getEndereco() {
-        return ResponseEntity.status(HttpStatus.FOUND).body(enderecoService.getEndereco());
+        return ResponseEntity.status(HttpStatus.OK).body(enderecoService.getEndereco());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> obterEnderecoById(@PathVariable(value = "id") Integer id) {
         try {
             Endereco endereco = enderecoService.getEnderecoById(id);
-            return ResponseEntity.status(HttpStatus.FOUND).body(endereco);
+            return ResponseEntity.status(HttpStatus.OK).body(endereco);
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado endereço");
         }

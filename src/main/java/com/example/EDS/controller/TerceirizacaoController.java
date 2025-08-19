@@ -30,14 +30,14 @@ public class TerceirizacaoController {
 
     @GetMapping
     public ResponseEntity<List<Terceirizacao>> obterTerceirizacao() {
-        return ResponseEntity.status(HttpStatus.FOUND).body(terceirizacaoService.obterTerceirizacao());
+        return ResponseEntity.status(HttpStatus.OK).body(terceirizacaoService.obterTerceirizacao());
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Object> obterTerceirizacaoById(@PathVariable(value = "id") Integer id) {
         try {
             Terceirizacao terceirizacao = terceirizacaoService.obterTerceirizacaoByID(id);
-            return ResponseEntity.status(HttpStatus.FOUND).body(terceirizacao);
+            return ResponseEntity.status(HttpStatus.OK).body(terceirizacao);
         } catch (Exception ex) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Não encontrado a terceirizacao");
         }
