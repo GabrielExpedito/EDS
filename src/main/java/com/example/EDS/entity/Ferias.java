@@ -17,9 +17,17 @@ public class Ferias {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", unique = true)
     private Integer id;
-    private Integer funcio_NRE;
-    private LocalDate dt_inicio;
-    private LocalDate dt_fim;
+
+    @ManyToOne
+    @JoinColumn(name = "funcio_NRE", referencedColumnName = "nre")
+    private Funcionario funcionario;
+
+    @Column(name = "dt_inicio")
+    private LocalDate dtInicio;
+
+    @Column(name = "dt_fim")
+    private LocalDate dtFim;
+
     private Boolean aprovado;
 
 
