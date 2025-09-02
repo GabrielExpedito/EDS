@@ -19,7 +19,7 @@ public class FeriasService {
     }
 
     public List<Ferias> listarFeriasFuturas() {
-        return feriasRepository.findByDtInicioAfter(LocalDate.now());
+        return feriasRepository.findByDtInicioGreaterThanEqual(LocalDate.now());
     }
 
     public List<Ferias> listarFeriasNoPeriodo(LocalDate inicio, LocalDate fim) {

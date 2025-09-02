@@ -10,8 +10,7 @@ import java.util.List;
 @Repository
 public interface FeriasRepository extends JpaRepository<Ferias, Integer> {
 
-    List<Ferias> findByDtInicioAfter(LocalDate data);
-
+    List<Ferias> findByDtInicioGreaterThanEqual(LocalDate data);
 
     List<Ferias> findByAprovadoTrueAndDtInicioBetween(LocalDate inicio, LocalDate fim);
 
